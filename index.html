@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="userApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+
+<body ng-controller="UserController">
+
+    <div class="container">
+        <h1 class="mt-5">User Management</h1>
+        <form ng-submit="addUser()">
+            <div class="form-group">
+                <label for="my_number">My Number</label>
+                <input type="text" class="form-control" id="my_number" ng-model="newUser.my_number" required>
+            </div>
+            <div class="form-group">
+                <label for="customer_email">Customer Email</label>
+                <input type="email" class="form-control" id="customer_email" ng-model="newUser.customer_email">
+            </div>
+            <div class="form-group">
+                <label for="customer_name">Customer Name</label>
+                <input type="text" class="form-control" id="customer_name" ng-model="newUser.customer_name">
+            </div>
+            <div class="form-group">
+                <label for="customer_care_number">Customer Care Number</label>
+                <input type="text" class="form-control" id="customer_care_number" ng-model="newUser.customer_care_number" required>
+            </div>
+            <div class="form-group">
+                <label for="expiry_date">Expiry Date</label>
+                <input type="date" class="form-control" id="expiry_date" ng-model="newUser.expiry_date">
+            </div>
+            <div class="form-group">
+                <label for="plan_type">Plan Type</label>
+                <select class="form-control" id="plan_type" ng-model="newUser.plan_type">
+                    <option value="Expired">Expired</option>
+                    <option value="Basic">Basic</option>
+                    <option value="Advance">Advance</option>
+                    <option value="FreeTrial">FreeTrial</option>
+                    <option value="AdvancePromo">AdvancePromo</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="trial_days">Trial Days</label>
+                <input type="number" class="form-control" id="trial_days" ng-model="newUser.trial_days">
+            </div>
+
+            <!-- Premium Usage Object Fields -->
+            <h5>Premium Usage Features</h5>
+            <div class="form-group">
+                <label for="premiumUsageObject_attachment">Attachment</label>
+                <input type="checkbox" ng-model="newUser.premiumUsageObject.attachment">
+            </div>
+            <div class="form-group">
+                <label for="premiumUsageObject_batching">Batching</label>
+                <input type="checkbox" ng-model="newUser.premiumUsageObject.batching">
+            </div>
+            <div class="form-group">
+                <label for="premiumUsageObject_caption">Caption</label>
+                <input type="checkbox" ng-model="newUser.premiumUsageObject.caption">
+            </div>
+            <div class="form-group">
+                <label for="premiumUsageObject_customisation">Customisation</label>
+                <input type="checkbox" ng-model="newUser.premiumUsageObject.customisation">
+            </div>
+            <div class="form-group">
+                <label for="premiumUsageObject_groupContactExport">Group Contact Export</label>
+                <input type="checkbox" ng-model="newUser.premiumUsageObject.groupContactExport">
+            </div>
+            <div class="form-group">
+                <label for="premiumUsageObject_multipleAttachment">Multiple Attachment</label>
+                <input type="checkbox" ng-model="newUser.premiumUsageObject.multipleAttachment">
+            </div>
+            <div class="form-group">
+                <label for="premiumUsageObject_quickReplies">Quick Replies</label>
+                <input type="checkbox" ng-model="newUser.premiumUsageObject.quickReplies">
+            </div>
+            <div class="form-group">
+                <label for="premiumUsageObject_schedule">Schedule</label>
+                <input type="checkbox" ng-model="newUser.premiumUsageObject.schedule">
+            </div>
+            <div class="form-group">
+                <label for="premiumUsageObject_stop">Stop</label>
+                <input type="checkbox" ng-model="newUser.premiumUsageObject.stop">
+            </div>
+            <div class="form-group">
+                <label for="premiumUsageObject_timeGap">Time Gap</label>
+                <input type="checkbox" ng-model="newUser.premiumUsageObject.timeGap">
+            </div>
+            <button type="submit" class="btn btn-primary">Add User</button>
+        </form>
+
+        <h2 class="mt-5">User List</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>My Number</th>
+                    <th>Customer Email</th>
+                    <th>Customer Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="user in users">
+                    <td>{{$index + 1}}</td>
+                    <td>{{user.my_number}}</td>
+                    <td>{{user.customer_email}}</td>
+                    <td>{{user.customer_name}}</td>
+                    <td>
+                        <button class="btn btn-warning" ng-click="editUser(user)">Edit</button>
+                        <button class="btn btn-danger" ng-click="deleteUser(user._id)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
