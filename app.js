@@ -3,7 +3,7 @@ const app = angular.module('userApp', []);
 
 // Define the UserController
 app.controller('UserController', function ($scope, $http) {
-    const apiUrl = 'http://localhost:5000/api/users'; // Change to your backend API URL
+    const apiUrl = 'https://myapi-fmd8.onrender.com/api/users'; // Change to your backend API URL
 
     // Initialize user list and new user object
     $scope.users = [];
